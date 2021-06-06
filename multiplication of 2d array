@@ -1,0 +1,49 @@
+ #include<stdio.h> 
+ void input(int ar[][50], int r, int c) 
+{     
+   for(int i=0; i<r;i++)     
+   for(int j=0; j<c;j++)     
+   scanf("%d",&ar[i][j]); 
+} 
+ 
+void display(int ar[][50], int r, int c) 
+{     for(int i=0;i<r;i++) 
+    {        for(int j=0;j<c;j++) 
+      {         printf("%d ",ar[i][j]); 
+       }       printf("\n"); 
+    } 
+} 
+ 
+void add(int A[][50],int B[][50],int C[][50],int r1,int c1) 
+{    
+   printf("\nAdded Matrix\n");    
+ for(int i=0;i<r1;++i)     
+ for(int j=0;j<c1;++j) 
+    { 
+       C[i][j]=A[i][j]+B[i][j]; 
+    } 
+    display(C,r1,c1); 
+} 
+void multiply(int A[][50],int B[][50],int C[][50], int r1,int c2) 
+{     for(int i=0;i<r1;i++)     
+    {           for(int j=0;j<c2;j++)     
+      {     
+        C[i][j]=0;          
+           for(int k=0;k<c2;k++)     
+        {     
+          C[i][j]+=A[i][k]*B[k][j];     
+         }     
+      }     
+    }  
+    printf("\nMultiplication of the matrices:\n");     display(C,r1,c2); 
+} 
+ 
+int main(){ int r1,r2,c1,c2,A[50][50],B[50][50],C[50][50],choice; printf("Enter the number of rows and columns of 1st matrix:\n"); scanf("%d %d", &r1, &c1); printf("Enter the number of rows and columns of 2nd matrix:\n"); scanf("%d %d", &r2, &c2); if(r1!=r2||c1!=c2) 
+{   printf("Can't be added!!");   
+return 0; } 
+if(c1!=r2) {   printf("\nCannot multiply matrices!!!!");   return 0; } printf("Input the elements of 1st matrix:\n"); input(A,r1,c1); printf("\nMatrix 1\n"); display(A,r1,c1); printf("\nInput the elements of 2nd matrix :\n"); input(B,r2,c2); printf("\nMatrix 2\n"); display(B,r2,c2); 
+ 
+add(A,B,C,r1,c1); multiply(A,B,C,r1,c2); 
+ 
+return 0; 
+} 
